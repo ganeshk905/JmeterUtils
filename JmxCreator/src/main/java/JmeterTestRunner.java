@@ -7,6 +7,7 @@ import org.apache.jmeter.reporters.Summariser;
 import org.apache.jmeter.save.SaveService;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
+import org.apache.poi.util.SystemOutLogger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,27 +24,29 @@ public class JmeterTestRunner {
     private static JMeterEngine jmeter = null;
 
     public static void main(String... args) {
-        new JmeterTestRunner().run();
+        runLocalJmx();
     }
 
-    public void run() {
+    public static void runLocalJmx() {
+        jmeter = initLocalJmeter();
+        start(jmeter);
 
     }
 
     public void runWithJmx(String jmxPath, String propertyPath, String homePath) {
     }
 
-    public static void start() {
+    public static void start(JMeterEngine engine) {
         try {
-            jmeter.runTest();
+            engine.runTest();
         } catch (JMeterEngineException e) {
             e.printStackTrace();
         }
     }
 
-    public static void stop() {
+    public static void stop(JMeterEngine engine) {
         try {
-            jmeter.stopTest(true);
+            engine.stopTest(true);
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -51,14 +54,15 @@ public class JmeterTestRunner {
     }
 
 
-    public static void initLocalJmeter(){
-        String home = System.getProperty("user.dir")+"/apacheJmeter";
-        initLocalJmeter(jmeter, home+"/bin/jmeter.properties",home);
+    public static JMeterEngine initLocalJmeter(){
+        String home = System.getProperty("user.dir")+"/src/main/resources";
+        System.out.println(home);
+        return initLocalJmeter(home+"/bin/jmeter.properties",home);
     }
-    public static JMeterEngine initLocalJmeter(JMeterEngine engine,String propertyPath, String homePath){
-        engine = new StandardJMeterEngine();
+    public static JMeterEngine initLocalJmeter(String propertyPath, String homePath){
+        StandardJMeterEngine engine = new StandardJMeterEngine();
         if(homePath.equals(null)){
-            homePath=System.getProperty("user.dir")+ File.separator+"RunJmeter";
+            homePath=System.getProperty("user.dir"+"/src/main/resources");
         }
         if(propertyPath.equals(null)){
             propertyPath = homePath+File.separator+"bin"+File.separator+"jmeter.properties";

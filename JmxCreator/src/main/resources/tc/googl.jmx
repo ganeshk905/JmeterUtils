@@ -61,7 +61,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/home/shantonu/Source/gitRepo/JmeterUtils/JmxCreator/src/main/resources/tc/results/result_${__time(,)}.jmx</stringProp>
         </ResultCollector>
         <hashTree/>
         <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Controller" enabled="true">
