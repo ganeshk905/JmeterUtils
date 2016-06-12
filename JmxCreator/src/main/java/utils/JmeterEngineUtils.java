@@ -15,6 +15,14 @@ import java.io.IOException;
  */
 public class JmeterEngineUtils {
 
+    public static void start(JMeterEngine engine, HashTree jmx) {
+        try {
+            engine.configure(jmx);
+            engine.runTest();
+        } catch (JMeterEngineException e) {
+            e.printStackTrace();
+        }
+    }
     public static void start(JMeterEngine engine) {
         try {
             engine.runTest();
