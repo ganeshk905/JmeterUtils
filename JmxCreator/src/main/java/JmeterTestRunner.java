@@ -9,6 +9,8 @@ import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -50,11 +52,11 @@ public class JmeterTestRunner {
 
 
     public static void initLocalJmeter(){
-        String home = System.getProperty("user.dir")+"/apache-jmeter-2.13";
-        initLocalJmeter(home+"/bin/jmeter.properties",home);
+        String home = System.getProperty("user.dir")+"/apacheJmeter";
+        initLocalJmeter(jmeter, home+"/bin/jmeter.properties",home);
     }
-    public static void initLocalJmeter(String propertyPath, String homePath){
-        jmeter = new StandardJMeterEngine();
+    public static JMeterEngine initLocalJmeter(JMeterEngine engine,String propertyPath, String homePath){
+        engine = new StandardJMeterEngine();
         if(homePath.equals(null)){
             homePath=System.getProperty("user.dir")+ File.separator+"RunJmeter";
         }
@@ -71,6 +73,13 @@ public class JmeterTestRunner {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return engine;
     }
 
+    public static JMeterEngine loadJmx(JMeterEngine engine, String path) throws IOException {
+            //FileInputStream fis = new FileInputStream(new File(path)); => old way, you need to close
+        HashTree jmx =  SaveService.loadTree(new File(path));
+        engine.configure(jmx);
+        return engine;
+    }
 }
