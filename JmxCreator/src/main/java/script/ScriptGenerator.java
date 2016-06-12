@@ -1,13 +1,18 @@
 package script;
 
+import org.apache.jmeter.control.LoopController;
+import org.apache.jmeter.protocol.http.sampler.HTTPSampler;
 import org.apache.jmeter.reporters.ResultCollector;
 import org.apache.jmeter.reporters.Summariser;
+import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.testelement.TestPlan;
+import org.apache.jmeter.threads.ThreadGroup;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
 
 /**
  * Created by shantonu on 6/12/16.
+ * TODO
  */
 public class ScriptGenerator {
     private static HashTree jmxTree = null;
@@ -25,14 +30,49 @@ public class ScriptGenerator {
         }
         return jmxTree;
     }
-    public static HashTree createTestPlan(String name){
+    public HashTree createTestPlan(String name){
         HashTree testPlanTree = getTestPlan();
         TestPlan testPlan = new TestPlan(name);
         jmxTree.add("testPlan", testPlan);
         //jmxTree.add("loopController",getLoopController("Loop",5));
         jmxTree.add("threadGroup",getThreadGroup("MyThreadGroup",20, 600, getLoopController("Loop",200)));
-        jmxTree.add("httpSampler",getAnHttp("Google"));
+        jmxTree.add("httpSampler",getAnHttp("Google", "google.com"));
         return testPlanTree;
 
+    }
+    private HTTPSampler getAnHttp(String name, String domain){
+        HTTPSampler http = new HTTPSampler();
+        http.setName(name);
+        http.setDomain(domain);
+        http.setPort(80);
+        http.setPath("/");
+        http.setMethod("GET");
+        return http;
+    }
+    private LoopController getLoopController(String name, int count){
+        LoopController loop = new LoopController();
+        loop.setName(name);
+        loop.setLoops(count);
+        loop.addTestElement(getAnHttp("AnHttpRequest","google.com"));
+        loop.setFirst(true);
+        loop.initialize();
+        return loop;
+    }
+    private ThreadGroup getThreadGroup(String name, int thread, int rampup, LoopController loop){
+        ThreadGroup td = new ThreadGroup();
+        td.setNumThreads(thread);
+        td.setRampUp(rampup);
+        td.setSamplerController(loop);
+
+        return td;
+    }
+    public static TestPlan addTestPlan(String name){
+        return  new TestPlan(name);
+    }
+
+    public static HashTree initScript(HashTree jmx, TestPlan... testPlan){
+        jmx.add(addTestPlan("createdFromIDE"));
+        jmx.add("loop", testPlan[0]);
+        return jmx;
     }
 }
