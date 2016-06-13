@@ -6,6 +6,7 @@ import org.apache.jmeter.reporters.ResultCollector;
 import org.apache.jmeter.reporters.Summariser;
 import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.testelement.TestPlan;
+import org.apache.jmeter.threads.AbstractThreadGroup;
 import org.apache.jmeter.threads.ThreadGroup;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
@@ -58,7 +59,7 @@ public class ScriptGenerator {
         loop.initialize();
         return loop;
     }
-    private ThreadGroup getThreadGroup(String name, int thread, int rampup, LoopController loop){
+    private AbstractThreadGroup getThreadGroup(String name, int thread, int rampup, LoopController loop){
         ThreadGroup td = new ThreadGroup();
         td.setNumThreads(thread);
         td.setRampUp(rampup);
@@ -74,5 +75,15 @@ public class ScriptGenerator {
         jmx.add(addTestPlan("createdFromIDE"));
         jmx.add("loop", testPlan[0]);
         return jmx;
+    }
+
+    // NEW items, old will be refactored , need to support jmeter + blazemeter plugins too
+    private static TestPlan getTestPlan(String name, String comments, boolean isConsecutively, boolean isTearDownAfterShutdown, String classpath, Variable... values){
+        TestPlan tp = new TestPlan();
+
+        return tp;
+    }
+    private static AbstractThreadGroup getThreadGroup(){
+        return null;
     }
 }
