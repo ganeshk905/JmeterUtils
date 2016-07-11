@@ -70,6 +70,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.jmeter</groupId>
+            <artifactId>ApacheJMeter_junit-test</artifactId>
+            <version>${jmeter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_jms</artifactId>
             <version>${jmeter.version}</version>
         </dependency>
@@ -116,11 +121,11 @@
         </dependency>
 
         <!--Reporting -->
-        <!--     <dependency>
-                 <groupId>org.apache.jmeter</groupId>
-                 <artifactId>ApacheJMeter_report</artifactId>
-                 <version>2.12</version>
-             </dependency>-->
+     <!--   <dependency>
+            <groupId>org.apache.jmeter</groupId>
+            <artifactId>ApacheJMeter_report</artifactId>
+            <version>2.12</version>
+        </dependency>-->
 
         <!--monitoring-->
         <dependency>
