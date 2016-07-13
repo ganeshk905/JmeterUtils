@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 public class Appplication {
     public static void main(String[] args) {
-        //NewDriver.main(args);
-        createFolders();
+        NewDriver.main(args);
+       // createFolders();
     }
 
     public static void createJmeterFileStructure() {
