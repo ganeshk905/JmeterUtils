@@ -13,6 +13,7 @@
         <module>Post Processors</module>
         <module>Pre Processors</module>
         <module>Listeners</module>
+        <module>Tests</module>
     </modules>
 
     <properties>
