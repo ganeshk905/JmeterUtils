@@ -11,14 +11,19 @@
         <jmeter.testCase1>demoPlan.jmx</jmeter.testCase1>
     </properties>
 
-<!--    <dependencies>
-        <dependency>
-            <groupId>kg.apc</groupId>
-            <artifactId>jmeter-plugins</artifactId>
-            <version>1.3.1</version>
-            <type>pom</type>
-        </dependency>
-    </dependencies>-->
+        <!--<dependencies>
+            <dependency>
+                <groupId>kg.apc</groupId>
+                <artifactId>jmeter-plugins</artifactId>
+                <version>1.3.1</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>jmeter-graph-maven-plugin</artifactId>
+                <version>0.1.0</version>
+            </dependency>
+        </dependencies>-->
     <profiles>
         <profile>
             <id>JmeterTesting</id>
@@ -67,7 +72,6 @@
 
                     </plugin>
                     <plugin>
-
                         <groupId>com.lazerycode.jmeter</groupId>
                         <artifactId>jmeter-analysis-maven-plugin</artifactId>
                         <version>1.0.6</version>
@@ -84,6 +88,197 @@
                             <targetDirectory>${user.dir}/reports</targetDirectory>
                         </configuration>
                     </plugin>
+
+                    <!--Need to experiments on this, not present in default maven repo-->
+                    <!--<plugin>
+                        <groupId>de.codecentric</groupId>
+                        <artifactId>jmeter-graph-maven-plugin</artifactId>
+                        <version>0.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>graphs-set-1</id>
+                                <goals>
+                                    <goal>create-graph</goal>
+                                </goals>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <inputFile>${project.build.directory}/jmeter/results/*.jtl</inputFile>
+                                    <graphs>
+                                        <graph>
+                                            <pluginType>ThreadsStateOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/ThreadsStateOverTime-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseTimesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/ResponseTimesOverTime-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>TransactionsPerSecond</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/TransactionsPerSecond-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>HitsPerSecond</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/HitsPerSecond-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>BytesThroughputOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/BytesThroughputOverTime-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>LatenciesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/LatenciesOverTime-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseCodesPerSecond</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/ResponseCodesPerSecond-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseTimesDistribution</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/ResponseTimesDistribution-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseTimesPercentiles</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/ResponseTimesPercentiles-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>TimesVsThreads</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/TimesVsThreads-10user.png
+                                            </outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ThroughputVsThreads</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>
+                                                ${project.build.directory}/jmeter/results/ThroughputVsThreads-10user.png
+                                            </outputFile>
+                                        </graph>
+                                    </graphs>
+                                    <processAllFilesFound>true</processAllFilesFound>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>graph-set-2</id>
+                                <goals>
+                                    <goal>create-graph</goal>
+                                </goals>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <inputFile>${project.build.directory}/jmeter/results/*.jtl</inputFile>
+                                    <graphs>
+                                        <graph>
+                                            <pluginType>ThreadsStateOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/ThreadsStateOverTime-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseTimesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/ResponseTimesOverTime-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>TransactionsPerSecond</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/TransactionsPerSecond-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>HitsPerSecond</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/HitsPerSecond-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>BytesThroughputOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/BytesThroughputOverTime-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>LatenciesOverTime</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/LatenciesOverTime-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseCodesPerSecond</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/ResponseCodesPerSecond-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseTimesDistribution</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/ResponseTimesDistribution-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ResponseTimesPercentiles</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/ResponseTimesPercentiles-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>TimesVsThreads</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/TimesVsThreads-20users.png</outputFile>
+                                        </graph>
+                                        <graph>
+                                            <pluginType>ThroughputVsThreads</pluginType>
+                                            <width>800</width>
+                                            <height>600</height>
+                                            <outputFile>${project.build.directory}/jmeter/results/ThroughputVsThreads-20users.png</outputFile>
+                                        </graph>
+                                    </graphs>
+                                    <processAllFilesFound>true</processAllFilesFound>
+
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                    </plugin>-->
                 </plugins>
             </build>
         </profile>
