@@ -1,0 +1,3 @@
+Required maven 3.1.1+, i use 3.3.9
+
+put JMX + user.properties in jmeter Folder

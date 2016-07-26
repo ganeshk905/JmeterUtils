@@ -176,7 +176,7 @@ Run the test and look into View Results Tree.</stringProp>
         </objProp>
         <stringProp name="TestPlan.comments">Run the test and look into Debug Sampler&apos;s response data. 
 You should see MyValue=...</stringProp>
-        <stringProp name="filename">/home/shantonu/Source/gitRepo/JmeterUtils/Jmeter Maven/src/test/jmeter/results_${__time(,)}.jtl</stringProp>
+        <stringProp name="filename">results_${__time(,)}.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
