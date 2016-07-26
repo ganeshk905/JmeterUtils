@@ -1,0 +1,10 @@
+.project
+*.iml
+.idea
+target*/
+.settings/
+.class
+bin/
+stuff/
+Log*/
+reports
