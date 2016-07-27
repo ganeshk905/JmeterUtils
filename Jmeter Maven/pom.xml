@@ -84,11 +84,24 @@
                                     <goal>analyze</goal>
                                 </goals>
                                 <phase>post-integration-test</phase>
+
                             </execution>
                         </executions>
                         <configuration>
                             <source>${project.build.directory}/jmeter/results/*</source>
                             <targetDirectory>${user.dir}/reports</targetDirectory>
+                            <sourceDirFailed>false</sourceDirFailed><!-- true = build fail for no source-->
+                                <maxSamples>5000</maxSamples>
+                            <configurationCharts>
+                                <width>640</width>
+                                <height>400</height>
+                            </configurationCharts>
+                            <!--Providing target samples to analyze rather general-->
+                            <!--<sampleNames>
+                                <sampleName>sample</sampleName>
+                                <sampleName>httpSample</sampleName>
+                            </sampleNames>-->
+                            <!-- defining default template <templateDirectory></templateDirectory>-->
                         </configuration>
                     </plugin>
 
