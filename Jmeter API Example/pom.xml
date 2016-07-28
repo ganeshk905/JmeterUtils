@@ -18,6 +18,7 @@
 
     <properties>
         <jmeter.version>3.0</jmeter.version>
+        <jmeter.plugin.version>1.4.0</jmeter.plugin.version>
     </properties>
     <dependencies>
         <!--Core section -->
@@ -136,10 +137,163 @@
             <version>${jmeter.version}</version>
         </dependency>
 
-        <!-- i like to minimize code-->
+        <!--plugin section-->
 
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins</artifactId>
+            <version>${jmeter.plugin.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-standard</artifactId>
+            <version>${jmeter.plugin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-extras</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-extras-libs</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-common</artifactId>
+            <version>${jmeter.plugin.version}</version>
+        </dependency>
+
+
+        <!--extra components : seperated-->
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-prmctl</artifactId>
+            <version>0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-xmpp</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-filterresults</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <!--plugin Extra tools -->
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>cmdrunner</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-cmd</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-plancheck</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-mergeresults</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-graphs-basic</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-charts</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-graphs-additional</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-graphs-ggl</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-synthesis</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-graphs-vs</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+
+        <!--for adding extra -->
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-cmn-jmeter</artifactId>
+            <version>0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-common-io</artifactId>
+            <version>0.2</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-jms</artifactId>
+            <version>0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-json</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-pde</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-xml</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-table-server</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>kg.apc</groupId>
+            <artifactId>jmeter-plugins-redis</artifactId>
+            <version>0.1</version>
+        </dependency>
 
     </dependencies>
+
+
 
     <build>
         <plugins>

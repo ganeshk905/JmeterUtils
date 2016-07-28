@@ -6,25 +6,27 @@
 
     <groupId>org.automation</groupId>
     <artifactId>jmetermaven</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>Plugins Graph</module>
+    </modules>
     <properties>
         <jmeter.testCase1>demoPlan.jmx</jmeter.testCase1>
         <data.path>${project.basedir}/src/test/jmeter/data.csv</data.path>
     </properties>
 
-        <!--<dependencies>
-            <dependency>
-                <groupId>kg.apc</groupId>
-                <artifactId>jmeter-plugins</artifactId>
-                <version>1.3.1</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>jmeter-graph-maven-plugin</artifactId>
-                <version>0.1.0</version>
-            </dependency>
-        </dependencies>-->
+ <!--   <distributionManagement>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>-->
+
     <profiles>
         <profile>
             <id>JmeterTesting</id>
@@ -40,15 +42,16 @@
                                 <goals>
                                     <goal>jmeter</goal>
                                 </goals>
+                                <!--<phase>integration-test</phase>-->
                                 <configuration>
                                     <testFilesIncluded>
                                         <jMeterTestFile>${jmeter.testCase1}</jMeterTestFile>
                                     </testFilesIncluded>
-
                                 </configuration>
                             </execution>
                         </executions>
                         <configuration>
+                            <overrideRootLogLevel>DEBUG</overrideRootLogLevel>
                             <propertiesUser>
                                 <!--Note that this data path renames files into folder_fileName, even if you dont include this line(a default behavior) [kind of useless, unless you have multiple thread group in a test plan]-->
                                 <threadgroup00.datafile>${data.path}</threadgroup00.datafile>
@@ -56,6 +59,7 @@
                             <jmeterExtensions>
                                 <artifact>kg.apc:jmeter-plugins:pom:1.3.1</artifact>
                             </jmeterExtensions>
+
                             <appendResultsTimestamp>true</appendResultsTimestamp>
                             <resultsFileNameDateFormat>yyMMdd-hhmmss</resultsFileNameDateFormat>
                             <!--<resultsFileFormat>xml</resultsFileFormat>
@@ -177,6 +181,7 @@
                                             </outputFile>
                                         </graph>
                                         <graph>
+
                                             <pluginType>ResponseTimesDistribution</pluginType>
                                             <width>800</width>
                                             <height>600</height>
