@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.apache.jmeter.protocol.http.sampler.HTTPSampler;
+import org.automation.In_JSR223_Java;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -17,7 +18,7 @@ import java.util.concurrent.Executors;
  * Created by shantonu on 7/24/16.
  * just dummy class, will add examples gradually
  */
-public class HttpRequestExamples {
+public class HttpRequestExamples implements In_JSR223_Java{
     public static void main(String[] args) {
 
     }
@@ -49,4 +50,8 @@ public class HttpRequestExamples {
         //sampler.add
     }
 
+    @Override
+    public void writeInJSRElement() {
+        
+    }
 }
