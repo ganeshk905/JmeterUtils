@@ -7,8 +7,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.apache.jmeter.protocol.http.control.CacheManager;
 import org.apache.jmeter.protocol.http.sampler.HTTPSampler;
-import org.automation.In_JSR223_Java;
+
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -52,6 +53,17 @@ public class HttpRequestExamples implements In_JSR223_Java{
 
     @Override
     public void writeInJSRElement() {
-        
+        CacheManager cacheManager = new CacheManager();
+        cacheManager.setMaxSize(5000);
+        HTTPSampler sampler = new HTTPSampler();
+        sampler.setProtocol("https");
+        sampler.setAutoRedirects(true);
+        sampler.setCacheManager(cacheManager);
+        sampler.setIpSource("google.com");
+        sampler.setIpSourceType(0);
+        sampler.setPath("/");
+        sampler.setUseKeepAlive(true);
+        sampler.setFollowRedirects(true);
+
     }
 }
