@@ -1,4 +1,4 @@
-package org.automation;
+package org.automation.jmeter;
 
 /**
  * Created by shantonu on 7/28/16.
