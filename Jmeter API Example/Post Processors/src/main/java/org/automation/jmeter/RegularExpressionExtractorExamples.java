@@ -15,6 +15,11 @@ public class RegularExpressionExtractorExamples implements In_JSR223_Java{
     @Override
     public void writeInJSRElement() {
 
+
+
+    }
+
+    public void viaFunction(){
         RegexFunction regix = new RegexFunction();
         SampleResult result = new SampleResult();
         Sampler sampler = new HTTPSampler();//this part wont be in there as you will get current samperls
@@ -24,6 +29,5 @@ public class RegularExpressionExtractorExamples implements In_JSR223_Java{
         } catch (InvalidVariableException e) {
             e.printStackTrace();
         }
-
     }
 }
