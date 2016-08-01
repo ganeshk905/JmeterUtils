@@ -1,8 +1,9 @@
-package org.automation.jmeter.sampler;
+package com.apache.jmeter.protocol.sftp.sampler;
 
 import org.apache.jmeter.testbeans.BeanInfoSupport;
-import org.apache.jmeter.testbeans.TestBean;
 import org.apache.jmeter.testbeans.gui.FileEditor;
+import org.apache.jorphan.logging.LoggingManager;
+import org.apache.log.Logger;
 
 import java.beans.PropertyDescriptor;
 
@@ -11,11 +12,12 @@ import java.beans.PropertyDescriptor;
  * practice cookbook example
  */
 public class SFTPSamplerBeanInfo extends BeanInfoSupport {
-
+    private static final Logger LOGGER = LoggingManager.getLoggerForClass();
     public SFTPSamplerBeanInfo() {
 
-        super(SFTPSampler.class);
 
+        super(SFTPSampler.class);
+        try{
         createPropertyGroup("Server", // $NON-NLS-1$
                 new String[]{
                         "hostname", // $NON-NLS-1$
@@ -96,6 +98,9 @@ public class SFTPSamplerBeanInfo extends BeanInfoSupport {
         p = property("destination"); // $NON-NLS-1$
         p.setValue(NOT_UNDEFINED, Boolean.TRUE);
         p.setValue(DEFAULT, "");
-
+    } catch (NoSuchMethodError e) {
+        LOGGER.error("Error initializing component GraphGeneratorListener due to missing method, if your version is lower than 2.10, this" +
+                "is expected to fail, if not check project dependencies");
+    }
     }
 }

@@ -1,4 +1,4 @@
-package org.automation.jmeter.sampler;
+package com.apache.jmeter.protocol.sftp.sampler;
 
 import com.jcraft.jsch.*;
 import org.apache.jmeter.samplers.AbstractSampler;
