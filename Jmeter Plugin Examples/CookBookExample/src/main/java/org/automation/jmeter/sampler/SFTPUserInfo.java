@@ -6,35 +6,37 @@ import java.io.Serializable;
 
 /**
  * Created by shantonu on 8/1/16.
+ * practice cookbook example
  */
 public class SFTPUserInfo implements UserInfo, Serializable {
-    @Override
+    private SFTPSampler owner;
+
+    public SFTPUserInfo(SFTPSampler owner) {
+        this.owner = owner;
+    }
+
     public String getPassphrase() {
-        return null;
+        return owner.getPassphrase();
     }
 
-    @Override
     public String getPassword() {
-        return null;
+        return owner.getPassword();
     }
 
-    @Override
-    public boolean promptPassword(String s) {
-        return false;
+    public boolean promptPassword(String message) {
+        return true;
     }
 
-    @Override
-    public boolean promptPassphrase(String s) {
-        return false;
+    public boolean promptPassphrase(String message) {
+        return true;
     }
 
-    @Override
-    public boolean promptYesNo(String s) {
-        return false;
+    public boolean promptYesNo(String message) {
+        return true;
     }
 
-    @Override
-    public void showMessage(String s) {
-
+    public void showMessage(String message) {
+        return;
     }
+
 }
