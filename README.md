@@ -12,6 +12,7 @@ Share Jmeter experiences :
  
  # Small projects 
  - Internal 
+ - plugins 
  
  # My experience 
  development 
